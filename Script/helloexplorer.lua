@@ -164,15 +164,13 @@ local function loadDex()
 
 local currentKeybind = Enum.KeyCode.RightBracket
 local isOpen = true
+
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "DexExplorer"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = player:WaitForChild("PlayerGui")
 
--- ══════════════════════════════
---     MINI BUTTON (saat close)
--- ══════════════════════════════
-
+-- Mini button
 local miniBtn = Instance.new("TextButton")
 miniBtn.Size = UDim2.new(0, 40, 0, 40)
 miniBtn.Position = UDim2.new(0, 10, 0.5, -20)
@@ -190,10 +188,7 @@ miniBorder.Color = C_BORDER
 miniBorder.Thickness = 1
 miniBorder.Parent = miniBtn
 
--- ══════════════════════════════
---         MAIN FRAME
--- ══════════════════════════════
-
+-- Main frame
 local mainFrame = Instance.new("Frame")
 mainFrame.Size = UDim2.new(0, 760, 0, 540)
 mainFrame.Position = UDim2.new(0.5, -380, 0.5, -270)
@@ -210,10 +205,7 @@ mainBorder.Color = C_BORDER
 mainBorder.Thickness = 1
 mainBorder.Parent = mainFrame
 
--- ══════════════════════════════
---         TITLE BAR
--- ══════════════════════════════
-
+-- Title bar
 local titleBar = Instance.new("Frame")
 titleBar.Size = UDim2.new(1, 0, 0, 28)
 titleBar.BackgroundColor3 = C_DARKER
@@ -242,7 +234,6 @@ titleLabel.Font = Enum.Font.Gotham
 titleLabel.TextXAlignment = Enum.TextXAlignment.Center
 titleLabel.Parent = titleBar
 
--- Settings button in title bar
 local settingsBtn = Instance.new("TextButton")
 settingsBtn.Size = UDim2.new(0, 26, 0, 20)
 settingsBtn.Position = UDim2.new(1, -30, 0.5, -10)
@@ -254,10 +245,7 @@ settingsBtn.BorderSizePixel = 0
 settingsBtn.Parent = titleBar
 Instance.new("UICorner", settingsBtn).CornerRadius = UDim.new(0, 3)
 
--- ══════════════════════════════
---         TOOLBAR
--- ══════════════════════════════
-
+-- Toolbar
 local toolbar = Instance.new("Frame")
 toolbar.Size = UDim2.new(1, 0, 0, 28)
 toolbar.Position = UDim2.new(0, 0, 0, 29)
@@ -311,17 +299,14 @@ sb.Color = C_BORDER
 sb.Thickness = 1
 sb.Parent = searchBox
 
--- ══════════════════════════════
---         CONTENT AREA
--- ══════════════════════════════
-
+-- Content area
 local contentArea = Instance.new("Frame")
 contentArea.Size = UDim2.new(1, 0, 1, -58)
 contentArea.Position = UDim2.new(0, 0, 0, 58)
 contentArea.BackgroundTransparency = 1
 contentArea.Parent = mainFrame
 
--- LEFT: Explorer
+-- Left panel
 local leftPanel = Instance.new("Frame")
 leftPanel.Size = UDim2.new(0, 260, 1, 0)
 leftPanel.BackgroundColor3 = C_DARKER
@@ -378,7 +363,7 @@ divider.BackgroundColor3 = C_BORDER
 divider.BorderSizePixel = 0
 divider.Parent = contentArea
 
--- RIGHT: Properties + Backpack panel
+-- Right panel
 local rightPanel = Instance.new("Frame")
 rightPanel.Size = UDim2.new(1, -262, 1, 0)
 rightPanel.Position = UDim2.new(0, 262, 0, 0)
@@ -410,7 +395,6 @@ rhSep.BackgroundColor3 = C_BORDER
 rhSep.BorderSizePixel = 0
 rhSep.Parent = rightHeader
 
--- Column headers
 local colHeader = Instance.new("Frame")
 colHeader.Size = UDim2.new(1, 0, 0, 20)
 colHeader.Position = UDim2.new(0, 0, 0, 23)
@@ -454,7 +438,6 @@ chSep.BackgroundColor3 = C_BORDER
 chSep.BorderSizePixel = 0
 chSep.Parent = colHeader
 
--- Properties scroll (main panel, resizable)
 local propScroll = Instance.new("ScrollingFrame")
 propScroll.Size = UDim2.new(1, 0, 0.6, -44)
 propScroll.Position = UDim2.new(0, 0, 0, 44)
@@ -474,10 +457,7 @@ propLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     propScroll.CanvasSize = UDim2.new(0, 0, 0, propLayout.AbsoluteContentSize.Y)
 end)
 
--- ══════════════════════════════
---     BACKPACK PANEL
--- ══════════════════════════════
-
+-- Backpack panel
 local backpackDiv = Instance.new("Frame")
 backpackDiv.Size = UDim2.new(1, 0, 0, 1)
 backpackDiv.Position = UDim2.new(0, 0, 0.6, 0)
@@ -527,7 +507,6 @@ bpTargetLabel.Font = Enum.Font.Gotham
 bpTargetLabel.TextXAlignment = Enum.TextXAlignment.Right
 bpTargetLabel.Parent = bpHeader
 
--- Tool input row
 local toolInputRow = Instance.new("Frame")
 toolInputRow.Size = UDim2.new(1, 0, 0, 28)
 toolInputRow.Position = UDim2.new(0, 0, 0, 25)
@@ -540,7 +519,7 @@ toolNameBox.Size = UDim2.new(1, -140, 0, 20)
 toolNameBox.Position = UDim2.new(0, 6, 0.5, -10)
 toolNameBox.BackgroundColor3 = C_INPUT
 toolNameBox.Text = ""
-toolNameBox.PlaceholderText = "Tool name / AssetId..."
+toolNameBox.PlaceholderText = "Tool name..."
 toolNameBox.PlaceholderColor3 = Color3.fromRGB(70, 70, 70)
 toolNameBox.TextColor3 = C_TEXT
 toolNameBox.TextSize = 11
@@ -579,7 +558,6 @@ clearBpBtn.BorderSizePixel = 0
 clearBpBtn.Parent = toolInputRow
 Instance.new("UICorner", clearBpBtn).CornerRadius = UDim.new(0, 3)
 
--- Tool list scroll
 local toolScroll = Instance.new("ScrollingFrame")
 toolScroll.Size = UDim2.new(1, 0, 1, -54)
 toolScroll.Position = UDim2.new(0, 0, 0, 54)
@@ -602,10 +580,430 @@ end)
 local currentTargetPlayer = nil
 
 -- ══════════════════════════════
+--     CONTEXT MENU
+-- ══════════════════════════════
+
+local contextMenu = Instance.new("Frame")
+contextMenu.Size = UDim2.new(0, 170, 0, 0)
+contextMenu.BackgroundColor3 = C_DARKER
+contextMenu.BorderSizePixel = 0
+contextMenu.Visible = false
+contextMenu.ZIndex = 20
+contextMenu.ClipsDescendants = false
+contextMenu.Parent = screenGui
+Instance.new("UICorner", contextMenu).CornerRadius = UDim.new(0, 4)
+
+local cmBorder = Instance.new("UIStroke")
+cmBorder.Color = C_BORDER
+cmBorder.Thickness = 1
+cmBorder.Parent = contextMenu
+
+local cmShadow = Instance.new("Frame")
+cmShadow.Size = UDim2.new(1, 4, 1, 4)
+cmShadow.Position = UDim2.new(0, 2, 0, 2)
+cmShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+cmShadow.BackgroundTransparency = 0.6
+cmShadow.BorderSizePixel = 0
+cmShadow.ZIndex = 19
+cmShadow.Parent = contextMenu
+Instance.new("UICorner", cmShadow).CornerRadius = UDim.new(0, 4)
+
+local cmLayout = Instance.new("UIListLayout")
+cmLayout.SortOrder = Enum.SortOrder.LayoutOrder
+cmLayout.Padding = UDim.new(0, 0)
+cmLayout.Parent = contextMenu
+
+local copiedObject = nil
+local contextTarget = nil
+
+local function closeCM()
+    TweenService:Create(contextMenu, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 170, 0, 0)
+    }):Play()
+    task.wait(0.1)
+    contextMenu.Visible = false
+    contextTarget = nil
+end
+
+local function makeCMSep(order)
+    local sep = Instance.new("Frame")
+    sep.Size = UDim2.new(1, -16, 0, 1)
+    sep.BackgroundColor3 = C_BORDER
+    sep.BorderSizePixel = 0
+    sep.LayoutOrder = order
+    sep.ZIndex = 21
+    sep.Parent = contextMenu
+
+    local pad = Instance.new("UIPadding")
+    pad.PaddingLeft = UDim.new(0, 8)
+    pad.PaddingRight = UDim.new(0, 8)
+    pad.Parent = sep
+end
+
+local function makeCMBtn(label, icon, color, order, shortcut, callback)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1, 0, 0, 26)
+    btn.BackgroundColor3 = C_DARKER
+    btn.Text = ""
+    btn.BorderSizePixel = 0
+    btn.LayoutOrder = order
+    btn.ZIndex = 21
+    btn.Parent = contextMenu
+
+    local iconLbl = Instance.new("TextLabel")
+    iconLbl.Size = UDim2.new(0, 22, 1, 0)
+    iconLbl.Position = UDim2.new(0, 6, 0, 0)
+    iconLbl.BackgroundTransparency = 1
+    iconLbl.Text = icon
+    iconLbl.TextSize = 11
+    iconLbl.Font = Enum.Font.Gotham
+    iconLbl.ZIndex = 22
+    iconLbl.Parent = btn
+
+    local textLbl = Instance.new("TextLabel")
+    textLbl.Size = UDim2.new(1, -60, 1, 0)
+    textLbl.Position = UDim2.new(0, 28, 0, 0)
+    textLbl.BackgroundTransparency = 1
+    textLbl.Text = label
+    textLbl.TextColor3 = color or C_TEXT
+    textLbl.TextSize = 11
+    textLbl.Font = Enum.Font.Gotham
+    textLbl.TextXAlignment = Enum.TextXAlignment.Left
+    textLbl.ZIndex = 22
+    textLbl.Parent = btn
+
+    if shortcut then
+        local scLbl = Instance.new("TextLabel")
+        scLbl.Size = UDim2.new(0, 40, 1, 0)
+        scLbl.Position = UDim2.new(1, -44, 0, 0)
+        scLbl.BackgroundTransparency = 1
+        scLbl.Text = shortcut
+        scLbl.TextColor3 = C_DIM
+        scLbl.TextSize = 9
+        scLbl.Font = Enum.Font.Gotham
+        scLbl.TextXAlignment = Enum.TextXAlignment.Right
+        scLbl.ZIndex = 22
+        scLbl.Parent = btn
+    end
+
+    btn.MouseEnter:Connect(function()
+        btn.BackgroundColor3 = C_SELECT
+        textLbl.TextColor3 = C_WHITE
+    end)
+    btn.MouseLeave:Connect(function()
+        btn.BackgroundColor3 = C_DARKER
+        textLbl.TextColor3 = color or C_TEXT
+    end)
+    btn.MouseButton1Click:Connect(function()
+        closeCM()
+        if callback then callback() end
+    end)
+    return btn
+end
+
+local function showRenamePopup(obj)
+    local renameGui = Instance.new("Frame")
+    renameGui.Size = UDim2.new(0, 260, 0, 90)
+    renameGui.Position = UDim2.new(0.5, -130, 0.5, -45)
+    renameGui.BackgroundColor3 = C_DARKER
+    renameGui.BorderSizePixel = 0
+    renameGui.ZIndex = 30
+    renameGui.Parent = screenGui
+    Instance.new("UICorner", renameGui).CornerRadius = UDim.new(0, 4)
+
+    local rBorder = Instance.new("UIStroke")
+    rBorder.Color = C_BLUE
+    rBorder.Thickness = 1
+    rBorder.Parent = renameGui
+
+    local rHeader = Instance.new("Frame")
+    rHeader.Size = UDim2.new(1, 0, 0, 26)
+    rHeader.BackgroundColor3 = C_HEADER
+    rHeader.BorderSizePixel = 0
+    rHeader.ZIndex = 31
+    rHeader.Parent = renameGui
+    Instance.new("UICorner", rHeader).CornerRadius = UDim.new(0, 4)
+
+    local rHeaderLbl = Instance.new("TextLabel")
+    rHeaderLbl.Size = UDim2.new(1, -10, 1, 0)
+    rHeaderLbl.Position = UDim2.new(0, 8, 0, 0)
+    rHeaderLbl.BackgroundTransparency = 1
+    rHeaderLbl.Text = "✏️ Rename Instance"
+    rHeaderLbl.TextColor3 = C_TEXT
+    rHeaderLbl.TextSize = 11
+    rHeaderLbl.Font = Enum.Font.GothamBold
+    rHeaderLbl.TextXAlignment = Enum.TextXAlignment.Left
+    rHeaderLbl.ZIndex = 32
+    rHeaderLbl.Parent = rHeader
+
+    local rInput = Instance.new("TextBox")
+    rInput.Size = UDim2.new(1, -16, 0, 26)
+    rInput.Position = UDim2.new(0, 8, 0, 32)
+    rInput.BackgroundColor3 = C_INPUT
+    rInput.Text = obj.Name
+    rInput.TextColor3 = C_TEXT
+    rInput.TextSize = 12
+    rInput.Font = Enum.Font.Gotham
+    rInput.BorderSizePixel = 0
+    rInput.ClearTextOnFocus = false
+    rInput.ZIndex = 31
+    rInput.Parent = renameGui
+    Instance.new("UICorner", rInput).CornerRadius = UDim.new(0, 3)
+
+    local riBorder = Instance.new("UIStroke")
+    riBorder.Color = C_BORDER
+    riBorder.Thickness = 1
+    riBorder.Parent = rInput
+
+    local rOk = Instance.new("TextButton")
+    rOk.Size = UDim2.new(0.5, -12, 0, 22)
+    rOk.Position = UDim2.new(0, 8, 1, -26)
+    rOk.BackgroundColor3 = C_BLUE
+    rOk.Text = "✅ OK"
+    rOk.TextColor3 = C_WHITE
+    rOk.TextSize = 11
+    rOk.Font = Enum.Font.GothamBold
+    rOk.BorderSizePixel = 0
+    rOk.ZIndex = 31
+    rOk.Parent = renameGui
+    Instance.new("UICorner", rOk).CornerRadius = UDim.new(0, 3)
+
+    local rCancel = Instance.new("TextButton")
+    rCancel.Size = UDim2.new(0.5, -12, 0, 22)
+    rCancel.Position = UDim2.new(0.5, 4, 1, -26)
+    rCancel.BackgroundColor3 = Color3.fromRGB(70, 30, 30)
+    rCancel.Text = "❌ Cancel"
+    rCancel.TextColor3 = C_RED
+    rCancel.TextSize = 11
+    rCancel.Font = Enum.Font.GothamBold
+    rCancel.BorderSizePixel = 0
+    rCancel.ZIndex = 31
+    rCancel.Parent = renameGui
+    Instance.new("UICorner", rCancel).CornerRadius = UDim.new(0, 3)
+
+    local function doRename()
+        pcall(function() obj.Name = rInput.Text end)
+        renameGui:Destroy()
+    end
+
+    rOk.MouseButton1Click:Connect(doRename)
+    rCancel.MouseButton1Click:Connect(function() renameGui:Destroy() end)
+    rInput.FocusLost:Connect(function(enter) if enter then doRename() end end)
+end
+
+local function buildContextMenu(obj, posX, posY)
+    for _, v in pairs(contextMenu:GetChildren()) do
+        if not v:IsA("UIListLayout") then v:Destroy() end
+    end
+
+    contextTarget = obj
+    local isTool = obj:IsA("Tool")
+    local isBasePart = obj:IsA("BasePart")
+    local isPlayer = obj:IsA("Player")
+    local order = 0
+
+    -- Header
+    local header = Instance.new("Frame")
+    header.Size = UDim2.new(1, 0, 0, 22)
+    header.BackgroundColor3 = C_HEADER
+    header.BorderSizePixel = 0
+    header.LayoutOrder = order
+    header.ZIndex = 21
+    header.Parent = contextMenu
+
+    local hIcon = Instance.new("TextLabel")
+    hIcon.Size = UDim2.new(0, 20, 1, 0)
+    hIcon.Position = UDim2.new(0, 6, 0, 0)
+    hIcon.BackgroundTransparency = 1
+    hIcon.Text = "📌"
+    hIcon.TextSize = 11
+    hIcon.ZIndex = 22
+    hIcon.Parent = header
+
+    local hLbl = Instance.new("TextLabel")
+    hLbl.Size = UDim2.new(1, -28, 1, 0)
+    hLbl.Position = UDim2.new(0, 26, 0, 0)
+    hLbl.BackgroundTransparency = 1
+    hLbl.Text = obj.ClassName .. " — " .. obj.Name
+    hLbl.TextColor3 = C_DIM
+    hLbl.TextSize = 10
+    hLbl.Font = Enum.Font.GothamBold
+    hLbl.TextXAlignment = Enum.TextXAlignment.Left
+    hLbl.TextTruncate = Enum.TextTruncate.AtEnd
+    hLbl.ZIndex = 22
+    hLbl.Parent = header
+
+    Instance.new("UICorner", header).CornerRadius = UDim.new(0, 4)
+    order += 1
+
+    -- General
+    makeCMBtn("Copy", "📋", C_TEXT, order, "Ctrl+C", function()
+        copiedObject = obj
+    end) order += 1
+
+    makeCMBtn("Paste Into", "📄", C_TEXT, order, "Ctrl+V", function()
+        if copiedObject then
+            local clone = copiedObject:Clone()
+            clone.Parent = obj
+        end
+    end) order += 1
+
+    makeCMBtn("Duplicate", "🔁", C_TEXT, order, "Ctrl+D", function()
+        local clone = obj:Clone()
+        clone.Name = obj.Name .. "_Copy"
+        clone.Parent = obj.Parent
+    end) order += 1
+
+    makeCMBtn("Cut", "✂️", C_TEXT, order, "Ctrl+X", function()
+        copiedObject = obj
+        obj.Parent = nil
+    end) order += 1
+
+    makeCMSep(order) order += 1
+
+    makeCMBtn("Rename", "✏️", C_TEXT, order, "F2", function()
+        showRenamePopup(obj)
+    end) order += 1
+
+    makeCMBtn("Select Children", "📂", C_TEXT, order, nil, function()
+        local count = #obj:GetChildren()
+        rightHeaderLbl.Text = "Properties — " .. obj.Name .. " (" .. count .. " children)"
+    end) order += 1
+
+    makeCMSep(order) order += 1
+
+    -- Copy info
+    makeCMBtn("Copy Name", "🔤", C_TEXT, order, nil, function()
+        setclipboard(obj.Name)
+    end) order += 1
+
+    makeCMBtn("Copy ClassName", "📌", C_TEXT, order, nil, function()
+        setclipboard(obj.ClassName)
+    end) order += 1
+
+    makeCMBtn("Copy Full Path", "📍", C_TEXT, order, nil, function()
+        local path = obj.Name
+        local cur = obj.Parent
+        while cur and cur ~= game do
+            path = cur.Name .. "." .. path
+            cur = cur.Parent
+        end
+        setclipboard("game." .. path)
+    end) order += 1
+
+    -- Tool specific
+    if isTool then
+        makeCMSep(order) order += 1
+
+        makeCMBtn("Copy Tool ID", "🆔", C_BLUE, order, nil, function()
+            local handle = obj:FindFirstChild("Handle")
+            if handle then
+                local mesh = handle:FindFirstChildOfClass("SpecialMesh")
+                if mesh and mesh.MeshId ~= "" then
+                    setclipboard(mesh.MeshId)
+                    return
+                end
+                local tex = handle:FindFirstChildOfClass("Texture")
+                if tex then
+                    setclipboard(tex.Texture)
+                    return
+                end
+            end
+            setclipboard(obj.Name)
+        end) order += 1
+
+        makeCMBtn("Give to Me", "🎁", C_GREEN, order, nil, function()
+            local myBp = player:FindFirstChild("Backpack")
+            if myBp then
+                local clone = obj:Clone()
+                clone.Parent = myBp
+            end
+        end) order += 1
+
+        makeCMBtn("Equip Tool", "🤲", C_GREEN, order, nil, function()
+            local myChar = player.Character
+            if myChar then
+                local clone = obj:Clone()
+                clone.Parent = myChar
+            end
+        end) order += 1
+    end
+
+    -- BasePart specific
+    if isBasePart then
+        makeCMSep(order) order += 1
+
+        makeCMBtn("Teleport Here", "🌀", C_PURPLE, order, nil, function()
+            local myChar = player.Character
+            local hrp = myChar and myChar:FindFirstChild("HumanoidRootPart")
+            if hrp then hrp.CFrame = obj.CFrame + Vector3.new(0, 5, 0) end
+        end) order += 1
+
+        makeCMBtn("Highlight", "🔲", C_PURPLE, order, nil, function()
+            local box = Instance.new("SelectionBox")
+            box.Adornee = obj
+            box.Color3 = C_BLUE
+            box.LineThickness = 0.06
+            box.Parent = workspace
+            task.delay(3, function() box:Destroy() end)
+        end) order += 1
+
+        makeCMBtn("Copy Position", "📐", C_PURPLE, order, nil, function()
+            local p = obj.Position
+            setclipboard(string.format("Vector3.new(%.2f, %.2f, %.2f)", p.X, p.Y, p.Z))
+        end) order += 1
+    end
+
+    -- Player specific
+    if isPlayer then
+        makeCMSep(order) order += 1
+
+        makeCMBtn("View Backpack", "🎒", C_PURPLE, order, nil, function()
+            refreshBackpack(obj)
+        end) order += 1
+
+        makeCMBtn("Copy UserId", "🆔", C_BLUE, order, nil, function()
+            setclipboard(tostring(obj.UserId))
+        end) order += 1
+    end
+
+    makeCMSep(order) order += 1
+
+    makeCMBtn("Delete", "🗑️", C_RED, order, "Del", function()
+        obj:Destroy()
+        clearProps()
+        rightHeaderLbl.Text = "Properties"
+    end) order += 1
+
+    -- Size & animate
+    local totalH = 22 + (order * 26)
+    contextMenu.Size = UDim2.new(0, 0, 0, 0)
+    contextMenu.Visible = true
+
+    local screenSize = workspace.CurrentCamera.ViewportSize
+    local x = math.min(posX, screenSize.X - 175)
+    local y = math.min(posY, screenSize.Y - totalH - 10)
+    contextMenu.Position = UDim2.new(0, x, 0, y)
+
+    TweenService:Create(contextMenu, TweenInfo.new(0.15, Enum.EasingStyle.Quart), {
+        Size = UDim2.new(0, 170, 0, totalH)
+    }):Play()
+end
+
+-- Close CM on click elsewhere
+UserInputService.InputBegan:Connect(function(input, gpe)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        if contextMenu.Visible then
+            closeCM()
+        end
+    end
+end)
+
+-- ══════════════════════════════
 --     BACKPACK FUNCTIONS
 -- ══════════════════════════════
 
-local function refreshBackpack(targetPlayer)
+function refreshBackpack(targetPlayer)
     for _, v in pairs(toolScroll:GetChildren()) do
         if not v:IsA("UIListLayout") then v:Destroy() end
     end
@@ -615,8 +1013,8 @@ local function refreshBackpack(targetPlayer)
 
     local backpack = targetPlayer:FindFirstChild("Backpack")
     local char = targetPlayer.Character
-
     local tools = {}
+
     if backpack then
         for _, t in pairs(backpack:GetChildren()) do
             if t:IsA("Tool") then table.insert(tools, {t, "Backpack"}) end
@@ -642,20 +1040,12 @@ local function refreshBackpack(targetPlayer)
 
     for i, data in ipairs(tools) do
         local tool, location = data[1], data[2]
-
         local row = Instance.new("Frame")
         row.Size = UDim2.new(1, 0, 0, 26)
         row.BackgroundColor3 = i % 2 == 0 and C_DARKER or Color3.fromRGB(30, 30, 30)
         row.BorderSizePixel = 0
         row.LayoutOrder = i
         row.Parent = toolScroll
-
-        local rowSep = Instance.new("Frame")
-        rowSep.Size = UDim2.new(1, 0, 0, 1)
-        rowSep.Position = UDim2.new(0, 0, 1, -1)
-        rowSep.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        rowSep.BorderSizePixel = 0
-        rowSep.Parent = row
 
         local toolIcon = Instance.new("TextLabel")
         toolIcon.Size = UDim2.new(0, 20, 1, 0)
@@ -678,7 +1068,6 @@ local function refreshBackpack(targetPlayer)
         toolNameLbl.TextTruncate = Enum.TextTruncate.AtEnd
         toolNameLbl.Parent = row
 
-        -- Location badge
         local locBadge = Instance.new("TextLabel")
         locBadge.Size = UDim2.new(0, 60, 0, 16)
         locBadge.Position = UDim2.new(1, -132, 0.5, -8)
@@ -693,9 +1082,8 @@ local function refreshBackpack(targetPlayer)
         locBadge.Parent = row
         Instance.new("UICorner", locBadge).CornerRadius = UDim.new(0, 3)
 
-        -- Take button
         local takeBtn = Instance.new("TextButton")
-        takeBtn.Size = UDim2.new(0, 50, 0, 18)
+        takeBtn.Size = UDim2.new(0, 46, 0, 18)
         takeBtn.Position = UDim2.new(1, -66, 0.5, -9)
         takeBtn.BackgroundColor3 = Color3.fromRGB(50, 80, 30)
         takeBtn.Text = "Take"
@@ -706,10 +1094,9 @@ local function refreshBackpack(targetPlayer)
         takeBtn.Parent = row
         Instance.new("UICorner", takeBtn).CornerRadius = UDim.new(0, 3)
 
-        -- Remove button
         local removeBtn = Instance.new("TextButton")
-        removeBtn.Size = UDim2.new(0, 50, 0, 18)
-        removeBtn.Position = UDim2.new(1, -10, 0.5, -9)
+        removeBtn.Size = UDim2.new(0, 52, 0, 18)
+        removeBtn.Position = UDim2.new(1, -6, 0.5, -9)
         removeBtn.AnchorPoint = Vector2.new(1, 0)
         removeBtn.BackgroundColor3 = Color3.fromRGB(70, 30, 30)
         removeBtn.Text = "Remove"
@@ -720,56 +1107,48 @@ local function refreshBackpack(targetPlayer)
         removeBtn.Parent = row
         Instance.new("UICorner", removeBtn).CornerRadius = UDim.new(0, 3)
 
-        -- Take = clone tool ke backpack kita
+        -- Right click on tool = context menu
+        row.MouseButton2Click:Connect(function()
+            local mousePos = UserInputService:GetMouseLocation()
+            buildContextMenu(tool, mousePos.X, mousePos.Y)
+        end)
+
         takeBtn.MouseButton1Click:Connect(function()
-            local myBackpack = player:FindFirstChild("Backpack")
-            if myBackpack then
+            local myBp = player:FindFirstChild("Backpack")
+            if myBp then
                 local clone = tool:Clone()
-                clone.Parent = myBackpack
+                clone.Parent = myBp
                 takeBtn.Text = "✅"
                 task.wait(1)
                 takeBtn.Text = "Take"
             end
         end)
 
-        -- Remove = hapus tool dari backpack target
         removeBtn.MouseButton1Click:Connect(function()
             tool:Destroy()
             refreshBackpack(targetPlayer)
         end)
 
-        row.MouseEnter:Connect(function()
-            row.BackgroundColor3 = C_HOVER
-        end)
+        row.MouseEnter:Connect(function() row.BackgroundColor3 = C_HOVER end)
         row.MouseLeave:Connect(function()
             row.BackgroundColor3 = i % 2 == 0 and C_DARKER or Color3.fromRGB(30, 30, 30)
         end)
     end
 end
 
--- Give tool ke target player
 giveToolBtn.MouseButton1Click:Connect(function()
     if not currentTargetPlayer then return end
     local toolName = toolNameBox.Text
     if toolName == "" then return end
-
     local myChar = player.Character
-    local myBackpack = player:FindFirstChild("Backpack")
-    local targetBackpack = currentTargetPlayer:FindFirstChild("Backpack")
-    if not targetBackpack then return end
-
-    -- Cari dari char atau backpack kita
+    local myBp = player:FindFirstChild("Backpack")
+    local targetBp = currentTargetPlayer:FindFirstChild("Backpack")
+    if not targetBp then return end
     local found = nil
-    if myChar then
-        found = myChar:FindFirstChild(toolName) or myChar:FindFirstChildWhichIsA("Tool")
-    end
-    if not found and myBackpack then
-        found = myBackpack:FindFirstChild(toolName)
-    end
-
+    if myChar then found = myChar:FindFirstChild(toolName) end
+    if not found and myBp then found = myBp:FindFirstChild(toolName) end
     if found and found:IsA("Tool") then
-        local clone = found:Clone()
-        clone.Parent = targetBackpack
+        found:Clone().Parent = targetBp
         giveToolBtn.Text = "✅"
         task.wait(1)
         giveToolBtn.Text = "+ Give"
@@ -798,7 +1177,7 @@ end)
 --       PROPERTY VIEWER
 -- ══════════════════════════════
 
-local function clearProps()
+function clearProps()
     for _, v in pairs(propScroll:GetChildren()) do
         if not v:IsA("UIListLayout") then v:Destroy() end
     end
@@ -841,22 +1220,15 @@ end
 local function formatValue(val)
     if type(val) == "boolean" then return val and "true" or "false" end
     if type(val) == "number" then return string.format("%.3f", val) end
-    if typeof(val) == "Vector3" then
-        return string.format("%.2f, %.2f, %.2f", val.X, val.Y, val.Z)
-    end
-    if typeof(val) == "Vector2" then
-        return string.format("%.2f, %.2f", val.X, val.Y)
-    end
-    if typeof(val) == "Color3" then
-        return string.format("[%d, %d, %d]", val.R*255, val.G*255, val.B*255)
-    end
+    if typeof(val) == "Vector3" then return string.format("%.2f, %.2f, %.2f", val.X, val.Y, val.Z) end
+    if typeof(val) == "Vector2" then return string.format("%.2f, %.2f", val.X, val.Y) end
+    if typeof(val) == "Color3" then return string.format("[%d, %d, %d]", val.R*255, val.G*255, val.B*255) end
     if typeof(val) == "CFrame" then
         local p = val.Position
         return string.format("%.2f, %.2f, %.2f", p.X, p.Y, p.Z)
     end
     if typeof(val) == "UDim2" then
-        return string.format("{%.0f, %.0f}, {%.0f, %.0f}",
-            val.X.Scale, val.X.Offset, val.Y.Scale, val.Y.Offset)
+        return string.format("{%.0f, %.0f}, {%.0f, %.0f}", val.X.Scale, val.X.Offset, val.Y.Scale, val.Y.Offset)
     end
     if typeof(val) == "EnumItem" then return tostring(val) end
     if typeof(val) == "BrickColor" then return tostring(val) end
@@ -945,12 +1317,12 @@ local PROPERTY_CATEGORIES = {
     {name="Data", props={"Name","ClassName","Archivable"}},
     {name="Appearance", props={
         "BackgroundColor3","BackgroundTransparency","BorderColor3","BorderSizePixel",
-        "TextColor3","TextTransparency","TextStrokeColor3","TextStrokeTransparency",
-        "Color","BrickColor","Material","Reflectance","Transparency","CastShadow",
+        "TextColor3","TextTransparency","Color","BrickColor","Material",
+        "Reflectance","Transparency","CastShadow",
     }},
     {name="Behavior", props={
-        "Active","Draggable","Visible","Enabled","CanCollide","CanTouch",
-        "CanQuery","Anchored","Massless","Locked","Disabled",
+        "Active","Draggable","Visible","Enabled","CanCollide",
+        "CanTouch","CanQuery","Anchored","Massless","Locked","Disabled",
     }},
     {name="Transform", props={
         "Position","Rotation","Orientation","CFrame","Size","Scale",
@@ -974,12 +1346,16 @@ local PROPERTY_CATEGORIES = {
     {name="Sound", props={
         "SoundId","Volume","PlaybackSpeed","Looped","IsPlaying","TimePosition",
     }},
+    {name="Player", props={
+        "UserId","Name","DisplayName","Team","TeamColor",
+        "CameraMode","AutoJumpEnabled","HealthDisplayDistance",
+        "NameDisplayDistance","AccountAge","MembershipType",
+    }},
 }
 
 local function showProperties(obj)
     clearProps()
     rightHeaderLbl.Text = "Properties — " .. obj.Name .. " [" .. obj.ClassName .. "]"
-
     local order = 0
     for _, cat in ipairs(PROPERTY_CATEGORIES) do
         local catProps = {}
@@ -1009,18 +1385,20 @@ local function getIcon(obj)
     local icons = {
         Workspace="🌍",Part="🧱",MeshPart="🧊",Model="📦",
         Script="📜",LocalScript="📄",ModuleScript="📋",
-        RemoteEvent="📡",RemoteFunction="📡",
-        Folder="📁",Frame="🖼",ScreenGui="🖥",
+        RemoteEvent="📡",RemoteFunction="📡",BindableEvent="📨",
+        Folder="📁",Frame="🖼",ScreenGui="🖥",SurfaceGui="🪟",
         TextLabel="🔤",TextButton="🔘",TextBox="✏️",
         ImageLabel="🖼",ImageButton="🖼",
-        Sound="🔊",Humanoid="🚶",HumanoidRootPart="⬛",
+        Sound="🔊",SoundService="🎵",
+        Humanoid="🚶",HumanoidRootPart="⬛",
         Camera="📷",Lighting="💡",
         ReplicatedStorage="💾",ServerScriptService="⚙️",
         StarterGui="🎮",StarterPack="🎒",StarterPlayer="👤",
-        Players="👥",Player="👤",
-        Backpack="🎒",Tool="🔧",
+        Players="👥",Player="👤",Backpack="🎒",Tool="🔧",
         NumberValue="🔢",StringValue="📝",
         BoolValue="✅",IntValue="🔢",
+        SelectionBox="🔲",SpawnLocation="🚩",
+        PointLight="💡",SpotLight="🔦",
     }
     return icons[obj.ClassName] or "📌"
 end
@@ -1030,124 +1408,146 @@ local function updateCanvasSize()
     explorerScroll.CanvasSize = UDim2.new(0, 0, 0, explorerLayout.AbsoluteContentSize.Y)
 end
 
-local function buildTree(parent, container, depth)
-    local children = {}
-    pcall(function()
-        for _, child in ipairs(parent:GetChildren()) do
-            table.insert(children, child)
+local function attachRowEvents(row, obj, nameLbl, arrowLbl, hasChildren, childContainer)
+    -- Left click
+    row.MouseButton1Click:Connect(function()
+        if selectedRow then selectedRow.BackgroundColor3 = C_DARKER end
+        row.BackgroundColor3 = C_SELECT
+        nameLbl.TextColor3 = C_WHITE
+        selectedRow = row
+        showProperties(obj)
+        if obj:IsA("Player") or obj:IsA("Backpack") then
+            local targetPl = obj:IsA("Player") and obj or obj.Parent
+            if targetPl and targetPl:IsA("Player") then
+                refreshBackpack(targetPl)
+            end
+        end
+        if hasChildren then
+            local expanded = (arrowLbl.Text == "▼")
+            expanded = not expanded
+            arrowLbl.Text = expanded and "▼" or "▶"
+            childContainer.Visible = expanded
+            if expanded and #childContainer:GetChildren() <= 1 then
+                -- build children on demand
+                local children = {}
+                pcall(function()
+                    for _, child in ipairs(obj:GetChildren()) do
+                        table.insert(children, child)
+                    end
+                end)
+                for _, child in ipairs(children) do
+                    nodeOrder += 1
+                    local myOrder2 = nodeOrder
+                    local hasChildren2 = #child:GetChildren() > 0
+
+                    local row2 = Instance.new("TextButton")
+                    row2.Size = UDim2.new(1, 0, 0, 20)
+                    row2.BackgroundColor3 = C_DARKER
+                    row2.Text = ""
+                    row2.BorderSizePixel = 0
+                    row2.LayoutOrder = myOrder2
+                    row2.Parent = childContainer
+
+                    local depth2 = 1
+                    local cur2 = obj
+                    while cur2 and cur2 ~= game do
+                        depth2 += 1
+                        cur2 = cur2.Parent
+                    end
+
+                    for i = 1, depth2 do
+                        local line = Instance.new("Frame")
+                        line.Size = UDim2.new(0, 1, 1, 0)
+                        line.Position = UDim2.new(0, (i-1)*16+8, 0, 0)
+                        line.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+                        line.BorderSizePixel = 0
+                        line.Parent = row2
+                    end
+
+                    local arr2 = Instance.new("TextLabel")
+                    arr2.Size = UDim2.new(0, 14, 1, 0)
+                    arr2.Position = UDim2.new(0, depth2*16+2, 0, 0)
+                    arr2.BackgroundTransparency = 1
+                    arr2.Text = hasChildren2 and "▶" or ""
+                    arr2.TextColor3 = C_DIM
+                    arr2.TextSize = 8
+                    arr2.Font = Enum.Font.Gotham
+                    arr2.Parent = row2
+
+                    local ico2 = Instance.new("TextLabel")
+                    ico2.Size = UDim2.new(0, 16, 1, 0)
+                    ico2.Position = UDim2.new(0, depth2*16+16, 0, 0)
+                    ico2.BackgroundTransparency = 1
+                    ico2.Text = getIcon(child)
+                    ico2.TextSize = 11
+                    ico2.Font = Enum.Font.GothamBold
+                    ico2.Parent = row2
+
+                    local name2 = Instance.new("TextLabel")
+                    name2.Size = UDim2.new(1, -(depth2*16+34), 1, 0)
+                    name2.Position = UDim2.new(0, depth2*16+34, 0, 0)
+                    name2.BackgroundTransparency = 1
+                    name2.Text = child.Name
+                    name2.TextColor3 = C_TEXT
+                    name2.TextSize = 11
+                    name2.Font = Enum.Font.Gotham
+                    name2.TextXAlignment = Enum.TextXAlignment.Left
+                    name2.TextTruncate = Enum.TextTruncate.AtEnd
+                    name2.Parent = row2
+
+                    local cc2 = Instance.new("Frame")
+                    cc2.Size = UDim2.new(1, 0, 0, 0)
+                    cc2.BackgroundTransparency = 1
+                    cc2.BorderSizePixel = 0
+                    cc2.Visible = false
+                    cc2.LayoutOrder = myOrder2 + 0.5
+                    cc2.Parent = childContainer
+
+                    local cl2 = Instance.new("UIListLayout")
+                    cl2.SortOrder = Enum.SortOrder.LayoutOrder
+                    cl2.Padding = UDim.new(0, 0)
+                    cl2.Parent = cc2
+
+                    cl2:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+                        cc2.Size = UDim2.new(1, 0, 0, cl2.AbsoluteContentSize.Y)
+                        updateCanvasSize()
+                    end)
+
+                    attachRowEvents(row2, child, name2, arr2, hasChildren2, cc2)
+                end
+            end
+            updateCanvasSize()
         end
     end)
 
-    for _, obj in ipairs(children) do
-        nodeOrder += 1
-        local myOrder = nodeOrder
-        local hasChildren = #obj:GetChildren() > 0
+    -- Right click = context menu
+    row.MouseButton2Click:Connect(function()
+        local mousePos = UserInputService:GetMouseLocation()
+        buildContextMenu(obj, mousePos.X, mousePos.Y)
+    end)
 
-        local row = Instance.new("TextButton")
-        row.Size = UDim2.new(1, 0, 0, 20)
-        row.BackgroundColor3 = C_DARKER
-        row.Text = ""
-        row.BorderSizePixel = 0
-        row.LayoutOrder = myOrder
-        row.Parent = container
-
-        for i = 1, depth do
-            local line = Instance.new("Frame")
-            line.Size = UDim2.new(0, 1, 1, 0)
-            line.Position = UDim2.new(0, (i-1)*16 + 8, 0, 0)
-            line.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-            line.BorderSizePixel = 0
-            line.Parent = row
+    -- Long press (mobile)
+    local holdConn
+    row.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch then
+            holdConn = task.delay(0.5, function()
+                local pos = input.Position
+                buildContextMenu(obj, pos.X, pos.Y)
+            end)
         end
+    end)
+    row.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch then
+            if holdConn then task.cancel(holdConn); holdConn = nil end
+        end
+    end)
 
-        local arrowLbl = Instance.new("TextLabel")
-        arrowLbl.Size = UDim2.new(0, 14, 1, 0)
-        arrowLbl.Position = UDim2.new(0, depth*16 + 2, 0, 0)
-        arrowLbl.BackgroundTransparency = 1
-        arrowLbl.Text = hasChildren and "▶" or ""
-        arrowLbl.TextColor3 = C_DIM
-        arrowLbl.TextSize = 8
-        arrowLbl.Font = Enum.Font.Gotham
-        arrowLbl.Parent = row
-
-        local iconLbl = Instance.new("TextLabel")
-        iconLbl.Size = UDim2.new(0, 16, 1, 0)
-        iconLbl.Position = UDim2.new(0, depth*16 + 16, 0, 0)
-        iconLbl.BackgroundTransparency = 1
-        iconLbl.Text = getIcon(obj)
-        iconLbl.TextSize = 11
-        iconLbl.Font = Enum.Font.GothamBold
-        iconLbl.Parent = row
-
-        local nameLbl = Instance.new("TextLabel")
-        nameLbl.Size = UDim2.new(1, -(depth*16 + 34), 1, 0)
-        nameLbl.Position = UDim2.new(0, depth*16 + 34, 0, 0)
-        nameLbl.BackgroundTransparency = 1
-        nameLbl.Text = obj.Name
-        nameLbl.TextColor3 = C_TEXT
-        nameLbl.TextSize = 11
-        nameLbl.Font = Enum.Font.Gotham
-        nameLbl.TextXAlignment = Enum.TextXAlignment.Left
-        nameLbl.TextTruncate = Enum.TextTruncate.AtEnd
-        nameLbl.Parent = row
-
-        local childContainer = Instance.new("Frame")
-        childContainer.Size = UDim2.new(1, 0, 0, 0)
-        childContainer.BackgroundTransparency = 1
-        childContainer.BorderSizePixel = 0
-        childContainer.Visible = false
-        childContainer.LayoutOrder = myOrder + 0.5
-        childContainer.Parent = container
-
-        local childLayout = Instance.new("UIListLayout")
-        childLayout.SortOrder = Enum.SortOrder.LayoutOrder
-        childLayout.Padding = UDim.new(0, 0)
-        childLayout.Parent = childContainer
-
-        childLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-            childContainer.Size = UDim2.new(1, 0, 0, childLayout.AbsoluteContentSize.Y)
-            updateCanvasSize()
-        end)
-
-        local expanded = false
-
-        row.MouseButton1Click:Connect(function()
-            if selectedRow then selectedRow.BackgroundColor3 = C_DARKER end
-            row.BackgroundColor3 = C_SELECT
-            nameLbl.TextColor3 = C_WHITE
-            selectedRow = row
-
-            showProperties(obj)
-
-            -- If player, show backpack
-            if obj:IsA("Player") then
-                refreshBackpack(obj)
-            elseif obj:IsA("Backpack") then
-                local parentPlayer = obj.Parent
-                if parentPlayer and parentPlayer:IsA("Player") then
-                    refreshBackpack(parentPlayer)
-                end
-            end
-
-            if hasChildren then
-                expanded = not expanded
-                arrowLbl.Text = expanded and "▼" or "▶"
-                childContainer.Visible = expanded
-                if expanded and #childContainer:GetChildren() <= 1 then
-                    buildTree(obj, childContainer, depth + 1)
-                end
-                updateCanvasSize()
-            end
-        end)
-
-        row.MouseEnter:Connect(function()
-            if row ~= selectedRow then row.BackgroundColor3 = C_HOVER end
-        end)
-        row.MouseLeave:Connect(function()
-            if row ~= selectedRow then row.BackgroundColor3 = C_DARKER end
-        end)
-    end
-    updateCanvasSize()
+    row.MouseEnter:Connect(function()
+        if row ~= selectedRow then row.BackgroundColor3 = C_HOVER end
+    end)
+    row.MouseLeave:Connect(function()
+        if row ~= selectedRow then row.BackgroundColor3 = C_DARKER end
+    end)
 end
 
 local function buildRootNode(service, label)
@@ -1217,32 +1617,7 @@ local function buildRootNode(service, label)
         updateCanvasSize()
     end)
 
-    local expanded = false
-
-    row.MouseButton1Click:Connect(function()
-        if selectedRow then selectedRow.BackgroundColor3 = C_DARKER end
-        row.BackgroundColor3 = C_SELECT
-        nameLbl.TextColor3 = C_WHITE
-        selectedRow = row
-        showProperties(service)
-
-        if service:IsA("Player") then refreshBackpack(service) end
-
-        expanded = not expanded
-        arrowLbl.Text = expanded and "▼" or "▶"
-        childContainer.Visible = expanded
-        if expanded and #childContainer:GetChildren() <= 1 then
-            buildTree(service, childContainer, 1)
-        end
-        updateCanvasSize()
-    end)
-
-    row.MouseEnter:Connect(function()
-        if row ~= selectedRow then row.BackgroundColor3 = C_HOVER end
-    end)
-    row.MouseLeave:Connect(function()
-        if row ~= selectedRow then row.BackgroundColor3 = C_DARKER end
-    end)
+    attachRowEvents(row, service, nameLbl, arrowLbl, true, childContainer)
 end
 
 local function refreshExplorer()
@@ -1294,7 +1669,7 @@ end)
 -- ══════════════════════════════
 
 local settingsPanel = Instance.new("Frame")
-settingsPanel.Size = UDim2.new(0, 260, 0, 200)
+settingsPanel.Size = UDim2.new(0, 260, 0, 210)
 settingsPanel.Position = UDim2.new(1, -270, 0, 28)
 settingsPanel.BackgroundColor3 = C_DARKER
 settingsPanel.BorderSizePixel = 0
@@ -1341,7 +1716,7 @@ local keybindBtn = Instance.new("TextButton")
 keybindBtn.Size = UDim2.new(1, -16, 0, 28)
 keybindBtn.Position = UDim2.new(0, 8, 0, 58)
 keybindBtn.BackgroundColor3 = C_BG
-keybindBtn.Text = "[ " .. tostring(currentKeybind):gsub("Enum.KeyCode.", "") .. " ]"
+keybindBtn.Text = "[ ] ]"
 keybindBtn.TextColor3 = C_BLUE
 keybindBtn.TextSize = 12
 keybindBtn.Font = Enum.Font.GothamBold
@@ -1390,9 +1765,9 @@ themeRow.BackgroundTransparency = 1
 themeRow.Parent = settingsPanel
 
 local themes = {
-    {name="Dark", bg=Color3.fromRGB(36,36,36)},
-    {name="Horror", bg=Color3.fromRGB(20,0,0)},
-    {name="Blue", bg=Color3.fromRGB(10,20,36)},
+    {name="Dark", bg=Color3.fromRGB(36,36,36), dark=Color3.fromRGB(28,28,28)},
+    {name="Horror", bg=Color3.fromRGB(20,0,0), dark=Color3.fromRGB(10,0,0)},
+    {name="Blue", bg=Color3.fromRGB(10,20,36), dark=Color3.fromRGB(5,10,20)},
 }
 
 for i, theme in ipairs(themes) do
@@ -1415,8 +1790,10 @@ for i, theme in ipairs(themes) do
 
     tb.MouseButton1Click:Connect(function()
         mainFrame.BackgroundColor3 = theme.bg
-        leftPanel.BackgroundColor3 = Color3.fromRGB(theme.bg.R*255 - 8, theme.bg.G*255, theme.bg.B*255)
-        rightPanel.BackgroundColor3 = Color3.fromRGB(theme.bg.R*255 - 8, theme.bg.G*255, theme.bg.B*255)
+        leftPanel.BackgroundColor3 = theme.dark
+        rightPanel.BackgroundColor3 = theme.dark
+        explorerScroll.BackgroundColor3 = theme.dark
+        backpackPanel.BackgroundColor3 = theme.dark
     end)
 end
 
@@ -1434,13 +1811,13 @@ UserInputService.InputBegan:Connect(function(input, gpe)
         if input.UserInputType == Enum.UserInputType.Keyboard then
             currentKeybind = input.KeyCode
             settingKeybind = false
-            keybindBtn.Text = "[ " .. tostring(input.KeyCode):gsub("Enum.KeyCode.", "") .. " ]"
+            local kbName = tostring(input.KeyCode):gsub("Enum.KeyCode.", "")
+            keybindBtn.Text = "[ " .. kbName .. " ]"
             keybindBtn.TextColor3 = C_BLUE
         end
         return
     end
 
-    -- Toggle open/close
     if input.KeyCode == currentKeybind then
         if isOpen then
             mainFrame.Visible = false
@@ -1452,31 +1829,30 @@ UserInputService.InputBegan:Connect(function(input, gpe)
             isOpen = true
         end
     end
+
+    -- Ctrl shortcuts
+    if input.KeyCode == Enum.KeyCode.C and UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
+        if contextTarget then copiedObject = contextTarget end
+    end
 end)
 
 settingsBtn.MouseButton1Click:Connect(function()
     settingsPanel.Visible = not settingsPanel.Visible
 end)
 
--- ══════════════════════════════
---       WINDOW CONTROLS
--- ══════════════════════════════
-
--- Close = hide + show mini btn
+-- Window controls
 closeWinBtn.MouseButton1Click:Connect(function()
     mainFrame.Visible = false
     miniBtn.Visible = true
     isOpen = false
 end)
 
--- Mini button = reopen
 miniBtn.MouseButton1Click:Connect(function()
     mainFrame.Visible = true
     miniBtn.Visible = false
     isOpen = true
 end)
 
--- Minimize = shrink to titlebar only
 local minimized = false
 minWinBtn.MouseButton1Click:Connect(function()
     minimized = not minimized
@@ -1485,7 +1861,6 @@ minWinBtn.MouseButton1Click:Connect(function()
     }):Play()
 end)
 
--- Maximize
 local fullscreen = false
 maxWinBtn.MouseButton1Click:Connect(function()
     fullscreen = not fullscreen
@@ -1495,7 +1870,7 @@ maxWinBtn.MouseButton1Click:Connect(function()
     }):Play()
 end)
 
-print("🔍 Dex Explorer loaded! Keybind: ]")
+print("🔍 Dex Explorer loaded! Keybind: ] — Right click nodes for options")
 end
 
 -- ══════════════════════════════
